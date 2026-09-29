@@ -1,0 +1,11 @@
+[
+  {
+    "id": "demo-001", "donor": "Demo: Campus Canteen", "title": "Freshly packed vegetarian meals", "address": "Knowledge Park II, Greater Noida", "portions": 24, "category": "cooked", "readyAt": "2099-09-29T09:00:00.000Z", "expiresAt": "2099-09-29T15:00:00.000Z", "notes": "Sealed meal boxes. Pickup at the canteen counter.", "status": "available", "volunteer": "", "demo": true, "createdAt": "2026-09-29T09:00:00.000Z"
+  },
+  {
+    "id": "demo-002", "donor": "Demo: Sector 62 Bakery", "title": "Bread and baked snacks", "address": "Sector 62, Noida", "portions": 18, "category": "packaged", "readyAt": "2099-09-29T10:00:00.000Z", "expiresAt": "2099-09-29T16:00:00.000Z", "notes": "Packaged this morning.", "status": "available", "volunteer": "", "demo": true, "createdAt": "2026-09-29T10:00:00.000Z"
+  },
+  {
+    "id": "demo-003", "donor": "Demo: Market Collective", "title": "Seasonal fruit and vegetables", "address": "Pari Chowk, Greater Noida", "portions": 32, "category": "produce", "readyAt": "2099-09-29T08:00:00.000Z", "expiresAt": "2099-09-30T12:00:00.000Z", "notes": "Bring crates or sturdy bags.", "status": "claimed", "volunteer": "Demo Volunteer", "demo": true, "createdAt": "2026-09-29T08:00:00.000Z"
+  }
+]

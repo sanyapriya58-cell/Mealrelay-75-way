@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en-IN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="MealRelay coordinates surplus food donations and volunteer pickups.">
+  <title>MealRelay | Food rescue board</title>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css">
+  <script src="/app.js" defer></script>
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand"><img class="brand-mark" src="/favicon.svg" alt="" width="40" height="40"><div><strong>MealRelay</strong><small>FOOD RESCUE BOARD</small></div></div>
+    <div class="top-actions"><span class="demo-flag">Prototype · demo listings</span><button class="button button-primary" id="openForm" type="button"><span class="plus" aria-hidden="true">+</span> Post food</button></div>
+  </header>
+
+  <main class="shell">
+    <aside class="sidebar">
+      <div class="sidebar-heading"><span class="overline">OPERATIONS</span><h1>Pickup board</h1><p>Find available surplus food and coordinate a local pickup.</p></div>
+      <div class="sidebar-divider"></div>
+      <label class="search-label" for="search">Search listings</label>
+      <div class="search-wrap"><span aria-hidden="true">⌕</span><input id="search" type="search" placeholder="Food, donor, area"></div>
+      <div class="filter-block"><span class="filter-label">STATUS</span><div class="filter-list" id="statusFilters"><button type="button" data-status="all" class="active">All listings <span id="allCount">0</span></button><button type="button" data-status="available">Available <span id="availableCount">0</span></button><button type="button" data-status="claimed">Claimed <span id="claimedCount">0</span></button><button type="button" data-status="picked_up">Picked up <span id="pickedCount">0</span></button></div></div>
+      <div class="filter-block"><label class="filter-label" for="categoryFilter">FOOD TYPE</label><select id="categoryFilter"><option value="all">All types</option><option value="cooked">Cooked meals</option><option value="produce">Produce</option><option value="packaged">Packaged food</option></select></div>
+      <p class="safety-note"><span aria-hidden="true">!</span> Confirm packaging, storage, and use-by details directly with the donor before any real pickup.</p>
+    </aside>
+
+    <section class="content">
+      <div class="overview"><div><span class="overline">GREATER NOIDA · DEMO BOARD</span><h2>Today’s rescue activity</h2></div><span class="live-label"><i></i> Local coordination</span></div>
+      <div class="stats" id="stats"><div class="stat"><span>AVAILABLE LISTINGS</span><strong id="statAvailable">0</strong><small>Ready for a volunteer</small></div><div class="stat"><span>PORTIONS AVAILABLE</span><strong id="statPortions">0</strong><small>Across open listings</small></div><div class="stat"><span>PICKUPS IN PROGRESS</span><strong id="statClaimed">0</strong><small>Claimed by volunteers</small></div><div class="stat accent-stat"><span>COMPLETED PICKUPS</span><strong id="statCompleted">0</strong><small>Marked as collected</small></div></div>
+      <div class="board-heading"><div><span class="overline">ACTIVE PIPELINE</span><h2>Food listings <span id="visibleCount">0</span></h2></div><select id="sort" aria-label="Sort listings"><option value="soonest">Use-by time: soonest</option><option value="newest">Newest first</option><option value="portions">Most portions</option></select></div>
+      <div class="board" id="board" aria-live="polite"><div class="loading">Loading listings…</div></div>
+    </section>
+  </main>
+
+  <dialog id="postDialog" class="post-dialog">
+    <form id="postForm">
+      <div class="dialog-head"><div><span class="overline">NEW LISTING</span><h2>Post surplus food</h2></div><button type="button" id="closeForm" class="close-button" aria-label="Close form">×</button></div>
+      <p class="dialog-intro">Share pickup details volunteers need to act quickly.</p>
+      <div class="form-grid"><label class="field"><span>Donor name</span><input name="donor" placeholder="Canteen or organisation" maxlength="100" required></label><label class="field"><span>Food type</span><select name="category"><option value="cooked">Cooked meals</option><option value="produce">Produce</option><option value="packaged">Packaged food</option></select></label><label class="field full"><span>Food description</span><input name="title" placeholder="e.g. Packed vegetarian meals" maxlength="100" required></label><label class="field"><span>Portions available</span><input name="portions" type="number" min="1" max="500" value="10" required></label><label class="field"><span>Pickup location</span><input name="address" placeholder="Area and landmark" maxlength="100" required></label><label class="field"><span>Ready from</span><input name="readyAt" type="datetime-local" required></label><label class="field"><span>Use by</span><input name="expiresAt" type="datetime-local" required></label><label class="field full"><span>Pickup notes</span><textarea name="notes" rows="3" maxlength="300" placeholder="Packaging, contact point, storage conditions"></textarea></label></div>
+      <p class="form-message" id="formMessage" role="alert"></p>
+      <div class="dialog-actions"><button type="button" id="cancelForm" class="button button-quiet">Cancel</button><button type="submit" class="button button-primary" id="submitPost">Publish listing</button></div>
+    </form>
+  </dialog>
+
+  <dialog id="claimDialog" class="claim-dialog"><form id="claimForm"><div class="dialog-head"><div><span class="overline">VOLUNTEER PICKUP</span><h2>Claim this listing</h2></div><button type="button" class="close-button" id="closeClaim" aria-label="Close claim form">×</button></div><p id="claimTitle" class="dialog-intro"></p><label class="field"><span>Volunteer name</span><input name="volunteer" maxlength="80" placeholder="Your name" required></label><p class="form-message" id="claimMessage" role="alert"></p><div class="dialog-actions"><button type="button" id="cancelClaim" class="button button-quiet">Cancel</button><button type="submit" class="button button-primary">Confirm claim</button></div></form></dialog>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+</body>
+</html>
